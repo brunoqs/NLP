@@ -1,0 +1,68 @@
+import urllib3
+import re
+from bs4 import BeautifulSoup
+import os
+import justext
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+user_agent = {'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'}
+
+http = urllib3.PoolManager(10, headers=user_agent)
+
+
+class Crawler:
+    
+    def __init__(self, corpus_path, max_files, seed_url, url_pattern):
+        self.corpus_path = corpus_path
+        self.max_files = max_files
+        self.seed_url = seed_url
+        self.url_pattern = url_pattern
+        self.visited_links = {}
+        self.to_be_visited = []
+        
+        if not os.path.exists(self.corpus_path):
+            os.makedirs(self.corpus_path)
+        
+    def crawl(self):
+        first_urls = self.get_page(self.seed_url)
+        self.add_links(first_urls)
+        next_link = self.get_next_link()
+        
+        file_counter = 1
+        while next_link and file_counter < self.max_files:
+            links = self.get_page(next_link)
+            self.add_links(links)
+            next_link = self.get_next_link()
+            file_counter += 1
+    
+    def get_page(self, url):
+        print("getting page {}".format(url))
+        response = http.request('GET', url)
+
+        # store text content
+        paragraphs = justext.justext(response.data, justext.get_stoplist("Portuguese"))
+        with open("{}/{}.txt".format(self.corpus_path, url.replace(".", "_").replace("/","-")), "w") as output_file:
+            for paragraph in paragraphs:
+                if not paragraph.is_boilerplate:
+                    output_file.write(paragraph.text)
+        
+        # get links
+        soup = BeautifulSoup(response.data, 'html.parser')
+        links = [link.get('href') for link in soup.find_all('a', attrs={'href': re.compile(self.url_pattern)})]
+
+        return links
+
+    def add_links(self, links):
+        links = list(set(links))
+        self.to_be_visited.extend([link for link in links if link not in self.visited_links])
+
+    def get_next_link(self):
+        next_link = self.to_be_visited.pop(0)
+        self.visited_links[next_link] = None
+        return next_link
+
+crawler_tecnologia = Crawler("data/corpora/tecnologia", 50, "https://www.diolinux.com.br/", "^https://www\.diolinux\.com\.br/201[8-9]/\d+")
+crawler_mercado = Crawler("data/corpora/mercado", 50, "https://www1.folha.uol.com.br/mercado/", "^https://www1\.folha\.uol\.com\.br/mercado/\w*")
+
+crawler_tecnologia.crawl()
+crawler_mercado.crawl()
