@@ -4,3 +4,4 @@ gensim
 beautifulsoup4
 justext
 urllib3
+unidecode
