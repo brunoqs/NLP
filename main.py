@@ -1,6 +1,7 @@
 import os
 
 from normalib.lexical import Normalization
+from gensim.models import Word2Vec, Doc2Vec
 
 
 corpus_path = "Crawler/data/corpora/tecnologia/"
@@ -14,5 +15,8 @@ for file in files:
 
 n = Normalization()
 
-print(n.normalization_pipeline(' '.join(corpus_lines), remove_accents=True, remove_punctuation=True, 
-                                tokenize_sentences=False, tokenize_words=False, lemmatize=True, stemmize=True))
+all_sentences = n.normalization_pipeline(' '.join(corpus_lines), remove_accents=True, remove_punctuation=True, 
+                                tokenize_sentences=False, tokenize_words=True, lemmatize=True, stemmize=True)
+print(all_sentences)                        
+w2vmodel_tecnologia = Word2Vec(all_sentences, size=200, window=5, min_count=3, workers=4)
+w2vmodel_tecnologia.wv.most_similar('fedora')
