@@ -1,6 +1,8 @@
 import nltk
 import unidecode
 import string
+import heapq
+
 
 class Normalization:
 
@@ -17,7 +19,9 @@ class Normalization:
         return unidecode.unidecode(text)
 
     def remove_punctuation(self, text):
-        return text.translate(str.maketrans('', '', string.punctuation))
+        tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
+        without_punctuation = tokenizer.tokenize(text)
+        return ' '.join(without_punctuation)
 
     def remove_stopwords(self, text):
         tokens = self.tokenize_words(text)
@@ -42,17 +46,26 @@ class Normalization:
         tokens = self.tokenize_words(text)
         stems = [self.stemmer.stem(stem) for stem in tokens]
         return ' '.join(stems)
+        
+    def frequently_words(self, text, n=20, more=True):
+        frequency = nltk.probability.FreqDist(word.lower() for word in self.tokenize_words(text))
+        if more:
+            most_frequently = heapq.nlargest(n, frequency, frequency.get)
+            return most_frequently
+        else:
+            less_frequently = heapq.nsmallest(n, frequency, frequency.get)
+            return less_frequently
 
     def normalization_pipeline(self, text, to_lower_case=False, remove_accents=False, remove_punctuation=False, remove_stopwords=False,
-                     tokenize_sentences=False, tokenize_words=False, lemmatize=False, stemmize=False):
+                    lemmatize=False, stemmize=False, tokenize_sentences=False, tokenize_words=False):
         text = self.to_lower_case(text) if to_lower_case else text               
         text = self.remove_accents(text) if remove_accents else text
         text = self.remove_punctuation(text) if remove_punctuation else text
         text = self.remove_stopwords(text) if remove_stopwords else text
-        text = self.tokenize_sentences(text) if tokenize_sentences else text
-        text = self.tokenize_words(text) if tokenize_words else text
         text = self.lemmatize(text) if lemmatize else text
         text = self.stemmize(text) if stemmize else text
+        text = self.tokenize_sentences(text) if tokenize_sentences else text
+        text = self.tokenize_words(text) if tokenize_words else text
         
         return text
 
