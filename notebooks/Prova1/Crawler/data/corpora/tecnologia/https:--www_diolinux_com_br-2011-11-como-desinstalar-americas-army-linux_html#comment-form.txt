@@ -1,0 +1,7 @@
+Como desinstalar americas army (linux)quarta-feira, 16 de novembro de 2011Um dos grandes jogos de computador que foi convertido para o mundo do Pinguim foi este AA.
+Então foi você bem feliz instalar o Americas Army no seu Ubuntu ( ou qualquer outro) e por algum motivo a coisa' não funcionou direito.
+Ai você procura por todos os lados uma maneira de remover ele do seu pc, Synaptic, Central de Programas, Menus de contexto e nada ... =/
+(Instalar foi tão facil =P )
+Seguem os procedimentos para desinstalar o Americas Army:Abra o terminal e digitecd /usr/local/games/armyops (caso seja este o diretório onde ele foi instalado - senão coloque o caminho aqui - caso não saiba procure o arquivo "armyops" e coloque o diretório completo onde ele se encontra)
+sudo sh ./uninstall (o arquivo "uninstall" se encontra dentro da pasta "/usr/local/games/armyops" e irá desinstalar o jogo)
+digite a senha de usuário

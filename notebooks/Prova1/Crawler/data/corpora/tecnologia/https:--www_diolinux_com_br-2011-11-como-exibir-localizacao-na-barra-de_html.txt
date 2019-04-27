@@ -1,0 +1,3 @@
+quarta-feira, 9 de novembro de 2011O nautilus, navegador de arquivos padrão do Ubuntu tem uma série de atalhos e configurações.
+Dentre eles existe a opção de mostrar a localização da pasta ( tal qual a barra de endereços do windows).
+pressione as teclas

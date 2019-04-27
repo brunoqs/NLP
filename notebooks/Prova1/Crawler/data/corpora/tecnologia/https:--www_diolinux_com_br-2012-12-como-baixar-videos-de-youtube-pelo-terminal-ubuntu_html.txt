@@ -1,0 +1,4 @@
+quinta-feira, 6 de dezembro de 2012Conheça o Movgrab para Ubuntu e Linux MintO Movgrab é uma programa em modo texto que serve para fazer download de vídeo dos principais sites da categoria, YouTube inclusive.InstalaçãoNo terminal cole os seguintes comandos:sudo add-apt-repository ppa:upubuntu-com/multimediasudo apt-get updatesudo apt-get install movgrabExemplosPara baixar um vídeo, use o comando abaixo substituindo o campo em rosa pela URL do vídeomovgrab 'URL'
+Este faz basicamente a mesma coisa, mas você pode escolher o nome que deseja que o arquivo seja salvo.movgrab -o file-name 'URL'
+Com este comando você consegue reiniciar um download pausado movgrab -r 'URL'
+Com o comando abaixo você verá outros parâmetros do software além da lista de sites suportadosmovgrabPara desinstalar o Movgrab siga o seguintes passos; abra o terminal e cole os comandos abaixo:

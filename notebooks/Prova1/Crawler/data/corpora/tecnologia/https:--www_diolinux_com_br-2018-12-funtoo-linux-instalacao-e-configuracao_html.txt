@@ -1,0 +1,24 @@
+sábado, 1 de dezembro de 2018Funtoo é um sistema operacional livre, baseado em Linux, baseado no Gentoo e iniciado em torno de 2008 por Daniel Robbins. Hoje vamos explorar um pouco mais essa distribuição tão peculiar.O primeiro passo é a instalação da distro em si. No vídeo abaixo configuramos nossa tabela de partições através do Ubuntu utilizando o Gparted, criando as seguintes partições dentro de uma partição estendida.Após isso, montamos as partições de root e boot e baixamos o stage3
+para instalação do Funtoo 64-bit para dentro do diretório montado a
+partição de root e logo após isso já o descompactamos. Depois montamos
+os dispositivos necessários para efetuarmos o chroot e o fazemos em seguida. E então sincronizamos a àrvore de diretório do Portage com a oficial do Funtoo utilizando o comando ego
+e logo depois alteramos a fstab (mudamos o número das partições e
+alteramos o boot de noauto para defaults) e em seguida atualizamos os
+aplicativos do Portage. Tratamos erros, adicionamos serviços para iniciar com o OpenRC
+e instalamos e configuramos o grub. Com tudo finalizado, saimos do
+chroot e desmontamos os dispositivos e reiniciamos a máquina para
+conferir. Assista o vídeo completo da instalação.Configurando e instalando aplicativosbspwm é um gerenciador de janelas leve, lado a lado,
+e minimalista escrito em C que organiza janelas em árvore binária
+completa. Seu tamanho instalado é menor que 600KB. O bspwm tem suporte
+para EWMH e múltiplos monitores. Ele responde apenas a eventos e
+mensagens X que recebe em um soquete dedicado de um programa incluído em
+seu pacote, o bspcPolybar é uma ferramenta rápida e fácil de usar para
+criar barras de status. Ele tem o objetivo de ser facilmente
+personalizável, utilizando vários módulos que permitem uma ampla
+variedade de funcionalidades (editáveis), como a exibição de espaços de
+trabalho, a data ou o volume do sistema. O Polybar é especialmente útil
+para gerenciadores de janelas que possuem uma barra de status limitada
+ou inexistente, como awesome ou i3 . O Polybar também pode ser usado em
+ambientes de desktop completos , como o Plasma.Rofi é um launcher que começou como um clone de
+simpleswitcher , escrito por Sean Pringle e posteriormente expandido por
+Dave Davenport .Instalamos, ajustamos e configuramos esses e outros aplicativos conforme o vídeo abaixo:FinalizandoFinalizamos a série sobre Funtoo Linux e mostramos como customizar o Polybar , Rofi e outros aplicativos e configurações. Logo no início (após logarmos com nosso usuário normal) configuramos o bspwm para iniciar setando configurações do rxvt-unicode, wallpaper e carregar o Polybar automaticamente. Elimine todas as dúvidas assistindo o vídeo abaixo que efetua todos os processos acima relatados, além de dicas adicionais.
