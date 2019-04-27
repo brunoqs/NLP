@@ -1,1 +1,0 @@
-Segundo as informações, a nova versão do Wine trará melhorias para os jogos principalmente, podemos ver claramente que os últimos lançamentos do software focam nisso, games, especialmente para aumentar a compatibilidade e desempenho, uma vez que para a maioria dos outros softwares já existem alternativas a altura para Linux e Mac OSX (O Wine tem uma versão para Mac também).

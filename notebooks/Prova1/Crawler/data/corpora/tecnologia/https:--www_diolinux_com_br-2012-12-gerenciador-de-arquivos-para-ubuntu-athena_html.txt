@@ -1,3 +1,0 @@
-segunda-feira, 3 de dezembro de 2012Mockups mostram a ideia de um novo gerenciador de arquivosMockups para quem não sabe, são desenhos conceituais sobre algum tipo de software normalmente, porém é possível aplicá-los em outras áreas, se formos traduzir o nome, mockups nada mais são do que maquetes, projetos do que gostaríamos que a aparência de determinado software fosse.
-Encontrei em um site internacional alguns destes mockups que mostram um ideia, sim uma ideia, porque ainda não foi escrita uma linha só de código, para um novo gerenciador de arquivos para o Ubuntu que se chamaria Athena, o nome da Deusa grega.
-Os desenvolvedores criaram mockups do que seria uma nova opção ao Nautilus quem vem juntamente com o Ubuntu desde sempre.
