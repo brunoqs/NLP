@@ -61,8 +61,8 @@ class Crawler:
         self.visited_links[next_link] = None
         return next_link
 
-crawler_tecnologia = Crawler("data/corpora/tecnologia", 50, "https://www.diolinux.com.br/", "^https://www\.diolinux\.com\.br/201[8-9]/\d+")
-crawler_mercado = Crawler("data/corpora/mercado", 50, "https://www1.folha.uol.com.br/mercado/", "^https://www1\.folha\.uol\.com\.br/mercado/\w*")
+crawler_tecnologia = Crawler("data/corpora/tecnologia", 500, "https://www.diolinux.com.br/", "^https://www\.diolinux\.com\.br/201[6-9]/\d+/\w+")
+#crawler_mercado = Crawler("data/corpora/mercado", 500, "https://www1.folha.uol.com.br/mercado/", "^https://www1\.folha\.uol\.com\.br/mercado/\w*")
 
 crawler_tecnologia.crawl()
-crawler_mercado.crawl()
+#crawler_mercado.crawl()
