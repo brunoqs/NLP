@@ -1,5 +1,6 @@
 import os
 from normalib.lexical import Normalization
+from normalib.statistics import Statistics
 from gensim.models import Word2Vec, Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
 
@@ -13,15 +14,14 @@ for file in files:
         lines = text_file.readlines()
         corpus_lines.extend(lines) 
 
-print(corpus_lines)
+n = Normalization()
 
-# n = Normalization()
-
-# all_sentences = n.normalization_pipeline(' '.join(corpus_lines), to_lower_case=True, remove_accents=False, remove_punctuation=True, 
-#                                 remove_stopwords=True, lemmatize=False, stemmize=False, tokenize_sentences=False, tokenize_words=False)
-# print(n.frequently_words(all_sentences))    
-# print(n.word_appear(all_sentences, 'é'))                      
-
+all_sentences = n.normalization_pipeline(' '.join(corpus_lines), to_lower_case=True, remove_accents=False, remove_punctuation=True, 
+                                remove_stopwords=True, lemmatize=False, stemmize=False, tokenize_sentences=False, tokenize_words=False)
+s = Statistics()
+print(s.frequently_words(all_sentences))    
+print(s.word_appear(all_sentences, 'é'))  
+print(s.word_once_length(all_sentences))                 
 
 # Word2Vec e Doc2Vec
 # n = Normalization()

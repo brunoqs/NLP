@@ -2,7 +2,6 @@ import nltk
 import unidecode
 import string
 import heapq
-import collections
 
 class Normalization:
 
@@ -46,19 +45,6 @@ class Normalization:
         tokens = self.tokenize_words(text)
         stems = [self.stemmer.stem(stem) for stem in tokens]
         return ' '.join(stems)
-        
-    def frequently_words(self, text, n=20, more=True):
-        frequency = nltk.probability.FreqDist(word.lower() for word in self.tokenize_words(text))
-        if more:
-            most_frequently = heapq.nlargest(n, frequency, frequency.get)
-            return most_frequently
-        else:
-            less_frequently = heapq.nsmallest(n, frequency, frequency.get)
-            return less_frequently
-
-    def word_appear(self, text, word):
-        frequency = nltk.probability.FreqDist(word.lower() for word in self.tokenize_words(text))
-        return frequency[word]
 
     def normalization_pipeline(self, text, to_lower_case=False, remove_accents=False, remove_punctuation=False, remove_stopwords=False,
                     lemmatize=False, stemmize=False, tokenize_sentences=False, tokenize_words=False):
