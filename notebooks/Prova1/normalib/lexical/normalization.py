@@ -1,15 +1,14 @@
 import nltk
 import unidecode
 import string
-import heapq
 
 class Normalization:
 
     def __init__(self):
         self.sent_tokenize = nltk.data.load('tokenizers/punkt/portuguese.pickle')
-        self.stopwords = nltk.corpus.stopwords.words('portuguese')
-        self.stemmer = nltk.stem.RSLPStemmer()
-        self.lemmatizer = nltk.stem.WordNetLemmatizer()
+        self.stopwords = nltk.corpus.stopwords.words('portuguese') # dicionario de stopwords portugues
+        self.stemmer = nltk.stem.RSLPStemmer() # stemmer para lingua portuguesa
+        self.lemmatizer = nltk.stem.WordNetLemmatizer() # lemmatizer apenas para lingua inglesa
 
     def to_lower_case(self, text):
         return text.lower()
@@ -22,6 +21,7 @@ class Normalization:
         without_punctuation = tokenizer.tokenize(text)
         return ' '.join(without_punctuation)
 
+    # remove stopwords e retorna um string para facilitar no pipeline
     def remove_stopwords(self, text):
         tokens = self.tokenize_words(text)
         without_stopwords = [token for token in tokens if token not in self.stopwords]
@@ -41,6 +41,7 @@ class Normalization:
         lemmas = [self.lemmatizer.lemmatize(lemma) for lemma in tokens]
         return lemmas
 
+    # retorna todas as palavras raizes como uma string para facilitar no pipeline
     def stemmize(self, text):
         tokens = self.tokenize_words(text)
         stems = [self.stemmer.stem(stem) for stem in tokens]
